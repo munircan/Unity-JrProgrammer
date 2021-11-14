@@ -1,2 +1,2 @@
 # Unity-JrProgrammer
-Unity-Learn Junior Programmer
+Unity-Learn Junior Programmer Pathway
