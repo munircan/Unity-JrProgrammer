@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private float scale;
+    [SerializeField] private float speed;
     private void Update()
     {
         //Move the vehicle forward
-        transform.Translate(Vector3.forward * (Time.deltaTime * scale));
+        transform.Translate(Vector3.forward * (Time.deltaTime * speed));
     }
 }
