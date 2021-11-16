@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class DestroyOutOfBounds : MonoBehaviour
 {
-    private float topBound = 30.0f;
-    private float lowerBound = -10.0f;
-    
+    private float topBound = 30;
+    private float lowerBound = -10;
+
     private void Update()
     {
         if (transform.position.z > topBound)

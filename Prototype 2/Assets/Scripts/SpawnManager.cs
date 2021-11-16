@@ -10,15 +10,22 @@ public class SpawnManager : MonoBehaviour
     [SerializeField] private GameObject[] animalPrefabs;
     private int index;
     private Vector3 spawnPos;
-    
-    private void Update()
+    private float delay = 2;
+    private float repeatRate = 1.5f;
+    private float spawnRangeX = 20;
+    private float spawnPosZ = 20;
+
+
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.S))
-        {
-            index = Random.Range(0, animalPrefabs.Length);
-            spawnPos = new Vector3(Random.Range(-10, 10), 0, 15);
-            Instantiate(animalPrefabs[index], spawnPos, animalPrefabs[index].transform.rotation);
-        }
-        
+        InvokeRepeating("SpawnRandomAnimal", delay, repeatRate);
+    }
+
+
+    private void SpawnRandomAnimal()
+    {
+        index = Random.Range(0, animalPrefabs.Length);
+        spawnPos = new Vector3(Random.Range(-spawnRangeX, spawnRangeX), 0, spawnPosZ);
+        Instantiate(animalPrefabs[index], spawnPos, animalPrefabs[index].transform.rotation);
     }
 }
