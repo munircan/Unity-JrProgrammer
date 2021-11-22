@@ -10,17 +10,22 @@ public class SpawnManager : MonoBehaviour
     private Vector3 spawnPos = new Vector3(30, 0, 0);
     private int index;
     private float startDelay = 2.0f;
-    private float repeatRate = 2.0f;
+    private float repeatRate = 4.0f;
+    private PlayerController playerController;
 
 
     private void Start()
     {
         InvokeRepeating("SpawnObstacles", startDelay, repeatRate);
+        playerController = GameObject.Find("Player").GetComponent<PlayerController>();
     }
 
     private void SpawnObstacles()
     {
-        index = Random.Range(0, obstaclePrefab.Length);
-        Instantiate(obstaclePrefab[index], spawnPos, obstaclePrefab[index].transform.rotation);
+        if (!playerController.isGameOver)
+        {
+            index = Random.Range(0, obstaclePrefab.Length);
+            Instantiate(obstaclePrefab[index], spawnPos, obstaclePrefab[index].transform.rotation);
+        }
     }
 }

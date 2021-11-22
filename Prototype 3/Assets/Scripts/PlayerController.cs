@@ -6,9 +6,10 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Rigidbody _playerRb;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float gravityModifier;
-    [SerializeField] private bool isOnGround;
+    private float jumpForce = 12.5f;
+    private float gravityModifier = 2.0f;
+    private bool isOnGround = true;
+    public bool isGameOver = false;
 
     private void Awake()
     {
@@ -24,13 +25,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
         {
-            _playerRb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            _playerRb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
     }
 
-    private void OnCollisionEnter()
+    private void OnCollisionEnter(Collision other)
     {
-        isOnGround = true;
+        if (other.gameObject.CompareTag("Ground")) isOnGround = true;
+        else if (other.gameObject.CompareTag("Obstacle")) isGameOver = true;
     }
 }
