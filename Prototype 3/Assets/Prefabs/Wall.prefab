@@ -93,10 +93,9 @@ GameObject:
   - component: {fileID: 2819943777142547542}
   - component: {fileID: 5937726344009814487}
   - component: {fileID: 3505682518561892603}
-  - component: {fileID: -1942598363212595855}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -143,8 +142,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 5.074299}
-  m_Center: {x: 0, y: 0.5, z: -0.19770706}
+  m_Size: {x: 0.2736478, y: 1, z: 5.074299}
+  m_Center: {x: -0.012048006, y: 0.5, z: -0.19770718}
 --- !u!114 &3505682518561892603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,16 +157,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
---- !u!114 &-1942598363212595855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5698095194591695510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7603e76b1c46e8478ea1e9395c47961, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bound: -10
