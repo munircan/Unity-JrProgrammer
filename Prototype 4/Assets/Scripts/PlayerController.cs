@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float speed;
     private Rigidbody playerRb;
     private GameObject focalPoint;
-    
+
     private void Awake()
     {
         playerRb = GetComponent<Rigidbody>();
