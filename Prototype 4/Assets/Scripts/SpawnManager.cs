@@ -7,17 +7,35 @@ using Random = UnityEngine.Random;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject enemyPrefab;
-    private float spawnRange = 9.0f;
+    [SerializeField] private GameObject powerUpPrefab;
+    private const float spawnRange = 9.0f;
+    private int enemyCount;
+    private int waveNumber = 1;
 
-    private void Start()
+
+    private void Update()
     {
-        Instantiate(enemyPrefab, GenerateSpawnPosition(), transform.rotation);
+        enemyCount = FindObjectsOfType<EnemyController>().Length;
+        if (enemyCount.Equals(0))
+        {
+            SpawnEnemyWave(waveNumber);
+            waveNumber++;
+            Instantiate(powerUpPrefab, GenerateSpawnPosition(), transform.rotation);
+        }
+    }
+
+    private void SpawnEnemyWave(int enemiesToSpawn)
+    {
+        for (var i = 0; i < enemiesToSpawn; i++)
+        {
+            Instantiate(enemyPrefab, GenerateSpawnPosition(), transform.rotation);
+        }
     }
 
     private Vector3 GenerateSpawnPosition()
     {
-        float spawnPos = Random.Range(-spawnRange, spawnRange);
-        Vector3 randomPos = new Vector3(spawnPos, 0, spawnPos);
+        var spawnPos = Random.Range(-spawnRange, spawnRange);
+        var randomPos = new Vector3(spawnPos, 0, spawnPos);
         return randomPos;
     }
 }

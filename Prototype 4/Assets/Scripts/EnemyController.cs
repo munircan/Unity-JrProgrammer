@@ -16,8 +16,15 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        Vector3 dir = (player.transform.position - transform.position).normalized;
+        var dir = (player.transform.position - transform.position).normalized;
         //enemyRb.velocity = dir * speed;
         enemyRb.AddForce(dir * speed);
+        DestroyOutOfBounds();
+    }
+
+
+    private void DestroyOutOfBounds()
+    {
+        if (transform.position.y < -10) Destroy(gameObject);
     }
 }
