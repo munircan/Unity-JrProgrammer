@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
         PlayerMovement();
         ConstrainPlayerPosition();
     }
-
     private void PlayerMovement()
     {
         var direction = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
@@ -38,5 +37,15 @@ public class PlayerController : MonoBehaviour
         {
             transform.position = new Vector3(transform.position.x, transform.position.y, -boundZ);
         }
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.gameObject.CompareTag("Obstacle")) Debug.Log("Collided with Obstacle!!");
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Supply")) Destroy(other.gameObject);
     }
 }
