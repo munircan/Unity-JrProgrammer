@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 public class Target : MonoBehaviour
 {
     private Rigidbody _targetRb;
+    private GameManager _gameManager;
 
     private float _minSpeed = 12;
     private float _maxSpeed = 16;
@@ -14,9 +15,17 @@ public class Target : MonoBehaviour
     private float _xSpawnRange = 4;
     private float _ySpawnPos = -2;
 
-    private void Start()
+    [SerializeField] private int pointValue;
+    [SerializeField] private ParticleSystem explosionParticle;
+
+    private void Awake()
     {
         _targetRb = GetComponent<Rigidbody>();
+        _gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+    }
+
+    private void Start()
+    {
         _targetRb.AddForce(RandomForce(), ForceMode.Impulse);
         _targetRb.AddTorque(RandomTorque(), RandomTorque(), RandomTorque(), ForceMode.Impulse);
 
@@ -26,6 +35,8 @@ public class Target : MonoBehaviour
     private void OnMouseDown()
     {
         Destroy(gameObject);
+        Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
+        _gameManager.UpdateScore(pointValue);
     }
 
     private void OnTriggerEnter(Collider other)
