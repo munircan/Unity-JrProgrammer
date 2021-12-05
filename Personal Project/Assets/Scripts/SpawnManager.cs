@@ -8,6 +8,8 @@ public class SpawnManager : MonoBehaviour
 {
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private GameObject supplyPrefab;
+    [SerializeField] private GameObject enemies;
+    [SerializeField] private GameObject supplies;
 
     private float zEnemySpawn = 12.0f;
     private float xSpawnRange = 16.0f;
@@ -31,7 +33,8 @@ public class SpawnManager : MonoBehaviour
 
         var spawnPos = new Vector3(randomX, ySpawn, zEnemySpawn);
 
-        Instantiate(enemyPrefabs[randomIndex], spawnPos, transform.rotation);
+        var enemy = Instantiate(enemyPrefabs[randomIndex], spawnPos, transform.rotation);
+        enemy.transform.parent = enemies.transform;
     }
 
     private void SpawnSupply()
@@ -40,6 +43,7 @@ public class SpawnManager : MonoBehaviour
         var randomZ = Random.Range(-zSupplySpawn, zSupplySpawn);
         var spawnPos = new Vector3(randomX, ySpawn, randomZ);
 
-        Instantiate(supplyPrefab, spawnPos, transform.rotation);
+        var supply = Instantiate(supplyPrefab, spawnPos, transform.rotation);
+        supply.transform.parent = supplies.transform;
     }
 }
