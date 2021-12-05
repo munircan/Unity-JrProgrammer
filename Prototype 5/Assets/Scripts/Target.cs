@@ -8,7 +8,6 @@ public class Target : MonoBehaviour
 {
     private Rigidbody _targetRb;
     private GameManager _gameManager;
-
     private float _minSpeed = 12;
     private float _maxSpeed = 16;
     private float _torqueRange = 10;
@@ -34,6 +33,7 @@ public class Target : MonoBehaviour
 
     private void OnMouseDown()
     {
+        if (!_gameManager.isGameActive) return;
         Destroy(gameObject);
         Instantiate(explosionParticle, transform.position, explosionParticle.transform.rotation);
         _gameManager.UpdateScore(pointValue);
@@ -42,6 +42,7 @@ public class Target : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Destroy(gameObject);
+        if (!gameObject.CompareTag("Skull")) _gameManager.GameOver();
     }
 
     private Vector3 RandomForce()
